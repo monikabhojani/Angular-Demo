@@ -1,0 +1,28 @@
+<!-- <app-filter-textbox></app-filter-textbox> -->
+<div class="form-inline my-3" method="get" action="">
+    Filter: <input class="form-control ml-3" type="text" name="" [(ngModel)]="searchText">
+</div>
+<div class="table-responsive p-3">
+    <table class="table mat-elevation-z8" mat-table>
+        <thead>
+            <tr>
+                <th [class.active]="order === 'name'" (click)="sort('name')">Name <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
+                <th [class.active]="order === 'city'" (click)="sort('city')">City <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
+                <th [class.active]="order === 'orderTotal'" (click)="sort('orderTotal')" class="text-right">Order Total <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let p of filteredustomers | orderBy: order:reverse:'case-insensitive' | filter: searchText; let i = index">
+            <td>{{p.name | titlecase}}</td>
+            <td>{{p.city}}</td>
+            <td class="text-right">{{p.orderTotal | currency:currencyCode:'&#8377;'}}</td>
+        </tr>
+        <tr *ngIf="filteredustomers && filteredustomers.length">
+            <td colspan="2">&nbsp;</td>
+            <td class="text-right">{{customerOrderTotal | currency:currencyCode:'&#8377;'}}</td>
+        </tr>
+        <tr *ngIf="!filteredustomers || !filteredustomers.length">
+            <td colspan="4">No Customer Found</td>
+        </tr>
+    </table>
+    Number Of customers: {{filteredustomers.length}}
+</div>
