@@ -1,0 +1,46 @@
+<h2>Tell us a little about your project</h2>
+<hr />
+
+<form [formGroup]="contactformgroup" novalidate>
+    <div class="row">
+        <div class="col-6">
+            <div class="formGroup">
+                <label for="username">Full Name<sup>*</sup></label>
+                <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Your Name" [class.is-invalid]="username.invalid && username.touched">
+                <small class="form-text text-danger" [class.d-none]="username.valid || username.untouched">please enter correct name</small>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="formGroup">
+                <label for="email">Email<sup>*</sup></label>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your email" [class.is-invalid]="email.invalid && email.touched" email>
+                                
+                <div *ngIf="email.touched && email.invalid">
+                    <small class="form-text text-danger" *ngIf="email.errors?.required">please enter email</small>
+                    <small class="form-text text-danger" *ngIf="email.errors?.email">please enter correct email</small>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="formGroup">
+                <label for="text">Number<sup>*</sup></label>
+                <input type="text" class="form-control" id="number" formControlName="number" placeholder="Enter Your number" [class.is-invalid]="number.invalid && number.touched" pattern="[789][0-9]{9}">
+                <!-- <small class="form-text text-danger" [class.d-none]="number.valid || number.untouched">please enter correct number</small> -->
+                <div *ngIf="number.touched && number.invalid">
+                    <small class="form-text text-danger" *ngIf="number.errors?.required">please enter number</small>
+                    <small class="form-text text-danger" *ngIf="number.errors?.pattern">please enter correct number</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="message">Enter Your Message</label>
+                <textarea class="form-control" rows="3" id="message" formControlName="message"></textarea>
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <button [disabled]="contactformgroup.invalid" class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+    </form>

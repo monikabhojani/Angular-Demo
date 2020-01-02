@@ -1,0 +1,45 @@
+<form [formGroup]="logingroup" novalidate>
+    <div class="col-md-6 my-5 offset-md-3">
+        <div class="col-12">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="username" formControlName="username"
+                    [class.is-invalid]="logingroup.get('username').invalid && logingroup.get('username').touched"
+                    required />
+                <span class="text-danger" *ngIf="logingroup.get('username').errors?.forbidden">admin is not valid</span>
+                
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <input class="form-control" type="email" placeholder="email" formControlName="email"
+                    [class.is-invalid]="logingroup.get('email').invalid"/>  
+                              
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="password" formControlName="password"
+                    [class.is-invalid]="logingroup.get('password').required" />
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="confirm password"
+                    formControlName="confirmpassword" [class.is-invalid]="logingroup.errors?.mismatch" />
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="agree" formControlName="agree">
+                <label class="form-check-label" for="agree">
+                    Agree T&C
+                </label>
+            </div>           
+        </div>
+        <div class="col-12 mt-3">
+            <div class="form-group">
+                <button class="btn btn-primary" [disabled]="logingroup.invalid">Login</button>
+            </div>
+        </div>
+    </div>
+</form>
