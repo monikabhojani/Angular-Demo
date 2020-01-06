@@ -1,0 +1,40 @@
+<h3>Book</h3>
+<hr/>
+{{bookForm.value | json}}
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="title" placeholder="Title" [class.is-invalid]="title.invalid && title.touched"/>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="author" placeholder="Author"/>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="category" placeholder="Category"/>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="bookForm.invalid">Save</button>
+</form>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-light">
+            <tbody>
+                <tr *ngFor="let book of books">
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.category}}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="editBook(book.id)">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteBookByID(book.id)">Delete</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info" (click)="detailBook(book.id)">Detail</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
