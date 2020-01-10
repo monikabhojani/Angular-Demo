@@ -1,0 +1,13 @@
+
+{{title}}
+<br/>
+<a routerLink='/customers'>Customers Module</a>
+<a [routerLink]="[{outlets:{order:['orders']}}]">Orders Module</a>
+
+
+<table>
+    <tr>
+        <td width="200"><router-outlet></router-outlet></td>
+        <td width="200"><router-outlet name="order"></router-outlet></td>
+    </tr>
+</table>
