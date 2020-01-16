@@ -1,0 +1,10 @@
+<table class="table">
+    <tr *ngFor = "let p of products">
+        <td>{{p.id}}</td>
+        <td>{{p.title}}</td>
+        <td>{{p.stock}}</td>
+        <td><app-stock [stock] = "p.stock" [stockid] = "p.id" (updatedstockemitter)="stockupdate($event)"></app-stock></td>
+    </tr>
+</table>
+
+
