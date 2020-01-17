@@ -6,3 +6,4 @@
 - 5.routing(cps-custom preload service)
 - 6.rxjs
 - 7.viewchild(input, output, dynamic component)
+- 8.storage 
